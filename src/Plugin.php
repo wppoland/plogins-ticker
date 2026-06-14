@@ -1,6 +1,6 @@
 <?php
 /**
- * Main plugin orchestrator.
+ * Main plugin class.
  *
  * @package Ticker
  */
@@ -15,8 +15,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Plugin singleton: wires the DI container and boots every HasHooks service
- * listed in config/hooks.php, then fires `ticker/booted` so the PRO companion
- * can extend without modifying core files.
+ * listed in config/hooks.php, then fires the `ticker/booted` action.
  */
 final class Plugin {
 
@@ -114,8 +113,6 @@ final class Plugin {
 
 		/**
 		 * Fires after the plugin has fully booted.
-		 *
-		 * PRO companions hook here to extend without modifying core files.
 		 *
 		 * @param Plugin $plugin The booted plugin instance.
 		 */

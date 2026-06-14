@@ -1,49 +1,30 @@
-# Ticker — Sales Countdown Timer for WooCommerce
+# Ticker
 
-A live, accessible sale **countdown timer** plus optional **low-stock scarcity** messaging for
-WooCommerce product pages. Self-contained (no runtime Composer dependencies), no jQuery, no layout
-shift.
+Ticker adds a live, accessible sale countdown timer to your WooCommerce product pages, plus an optional "Only N left in stock" scarcity message — a simple way to add urgency and turn browsers into buyers.
 
-## What it does (FREE)
+## Features
 
-On single product pages, Ticker renders a live countdown to the end of a sale and, optionally, a
-friendly "Only N left in stock" message.
+- Live countdown to a product's native WooCommerce sale end date, or to a store-wide campaign end date you set.
+- Optional low-stock scarcity message with a configurable threshold, shown only for products that track inventory.
+- End time is resolved on the server, so a visitor's wrong clock can never change the actual end moment; the browser only formats the remaining time.
+- Choose where the timer appears and pick from three display formats, with an optional heading and a customisable expired message.
+- Accessible `role="timer"` with a polite live region; no jQuery and no layout shift. Dark-mode and reduced-motion aware.
+- Graceful states: nothing renders when there is nothing to show, and a friendly message replaces the clock once the sale ends.
 
-- **End time source** (configurable):
-  1. the product's native WooCommerce `Sale price dates → To`,
-  2. a per-product campaign end date (post meta `_ticker_campaign_end`, set by PRO),
-  3. a global campaign end date set in the plugin settings.
-- The **server** computes the end timestamp; the **browser** only formats the remaining time, so a
-  visitor's wrong clock can never change the actual end moment.
-- Graceful states: nothing to show → renders nothing; sale ended → friendly expired message.
+## Installation
 
-## Architecture
+1. Upload the plugin to `/wp-content/plugins/ticker`, or install it from Plugins → Add New.
+2. Activate it. WooCommerce must be active.
+3. Go to WooCommerce → Ticker, enable the countdown, then set a sale end date on a product (or a global campaign end date in the settings).
 
-- **Bootstrap** (`ticker.php`): PHP/WC guards, HPOS + cart-blocks compat, boots on `init:0`, fires
-  `do_action('ticker/booted', Plugin::instance())` from inside `Plugin::boot()` — the hook the PRO
-  companion extends. No translation calls at `plugins_loaded` scope.
-- **Autoload** (`autoload.php`): Composer autoloader when present, PSR-4 fallback otherwise (so the
-  plugin works from a packaged ZIP without `vendor/`).
-- **DI**: `src/Plugin.php` singleton + `src/Container.php` (with `has()`); services in
-  `config/services.php`, boot order in `config/hooks.php`, defaults in `config/defaults.php`;
-  `src/Migrator.php` for idempotent version migrations.
-- **Core**: `src/Service/CountdownService.php` (resolve end time + scarcity, render),
-  `src/Util/TemplateLoader.php` (theme-overridable templates),
-  `templates/single-product/countdown.php`.
-- **Admin**: `src/Admin/Settings.php` — a **WooCommerce → Ticker** submenu page (Settings API).
-- **Assets**: `assets/{css,js}` — vanilla JS countdown, modern CSS with custom properties,
-  `prefers-reduced-motion` and dark-mode aware.
+## Frequently Asked Questions
 
-## Gates
+**Where does the countdown end time come from?**
+By default Ticker reads each product's native WooCommerce sale end date. You can instead count down to a single store-wide campaign date, or mix both — a product sale date is used when present, with the global date as a fallback.
 
-```bash
-composer install
-composer cs        # PHPCS (WordPress standard)
-composer analyse   # PHPStan level 6 + WooCommerce stubs
-```
+**Is the timer accurate if the visitor's clock is wrong?**
+Yes. The end moment is a fixed timestamp from the server; the browser only formats the remaining time.
 
-## PRO companion
+Built by WPPoland — https://plogins.com
 
-`wppoland/ticker-pro` (private) hooks `add_action('ticker/booted', …)`, bundles the Freemius SDK,
-and extends the shared container with premium features (per-product campaign dates, scheduled and
-recurring campaigns, more).
+License: GPL-2.0-or-later
