@@ -82,15 +82,17 @@ final class Plugin {
 	}
 
 	/**
-	 * Boot the plugin: load i18n, run migrations, register hook subscribers.
+	 * Boot the plugin: run migrations, register hook subscribers.
+	 *
+	 * Translations are loaded automatically by WordPress (4.6+) for plugins
+	 * hosted on WordPress.org, so no manual load_plugin_textdomain() call is
+	 * needed. The bundled languages/ticker.pot remains for translators.
 	 */
 	public function boot(): void {
 		if ( $this->booted ) {
 			return;
 		}
 		$this->booted = true;
-
-		load_plugin_textdomain( 'ticker', false, dirname( plugin_basename( PLUGIN_FILE ) ) . '/languages' );
 
 		$this->container->get( Migrator::class )->maybeMigrate();
 
