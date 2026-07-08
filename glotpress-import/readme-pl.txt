@@ -4,7 +4,7 @@ Tags: woocommerce, countdown, sale, urgency, timer
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 1.0.2
+Stable tag: 1.0.1
 Requires Plugins: woocommerce
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -36,18 +36,17 @@ Source code and issue tracker live on GitHub: https://github.com/wppoland/plogin
 
 1. Install and activate WooCommerce 8.0 or later.
 2. Upload the `ticker` folder to `/wp-content/plugins/`, or install it from the Plugins screen.
-3. Activate Ticker through the **Plugins** screen.
-4. Go to **WooCommerce → Ticker** and tick "Enable countdown".
+3. Activate Ticker through the <strong>Plugins<strong> screen. 4. Go to </strong>WooCommerce → Ticker</strong> and tick "Enable countdown".
 5. Set a sale end date on a product (Product data → General → Sale price dates), or set a campaign end date in Ticker's settings. The countdown then appears on the product page.
 
 == Frequently Asked Questions ==
 
 = Documentation and links =
 
-* **Documentation** - https://plogins.com/plogins-ticker/docs/
-* **Plugin page** - https://plogins.com/plogins-ticker/
-* **Source code** - https://github.com/wppoland/plogins-ticker
-* **Bug reports and feature requests** - https://github.com/wppoland/plogins-ticker/issues
+* <strong>Documentation</strong> - https://plogins.com/pl/plogins-ticker/docs/
+* <strong>Plugin page</strong> - https://plogins.com/pl/plogins-ticker/
+* <strong>Source code</strong> - https://github.com/wppoland/plogins-ticker
+* <strong>Bug reports and feature requests</strong> - https://github.com/wppoland/plogins-ticker/issues
 
 
 = Does Ticker need WooCommerce? =
@@ -82,14 +81,7 @@ Yes. This plugin is compatible with WordPress Multisite. Network activate it or 
 
 Ticker does not connect to any external services. It resolves the countdown end time entirely on your own server from each product's WooCommerce "Sale price dates" or a store-wide campaign date you set, and its `assets/js/ticker.js` script only formats that time in the browser, with no requests to any third party. Your settings are stored in the `ticker_settings` and `ticker_db_version` options in your site's `wp_options` table; no custom tables are created and no data leaves your site.
 
-== Translations ==
-
-Plogins Ticker includes Polish, German and Spanish translations for the plugin interface. The text domain is `plogins-ticker`, so WordPress.org language packs can also override or extend these bundled translations.
-
 == Changelog ==
-
-= 1.0.2 =
-* Added bundled Polish, German and Spanish translations for the plugin interface.
 
 = 1.0.1 =
 * First stable release.
@@ -98,12 +90,12 @@ Plogins Ticker includes Polish, German and Spanish translations for the plugin i
 * Renamed to Plogins Ticker for WooCommerce for a more distinctive plugin name.
 
 = 0.1.2 =
-* Add `ticker/countdown_rendered` action and `data-ticker-product-id` on the countdown markup for PRO analytics.
+* Dodaj akcję „ticker/countdown_rendered” i „data-ticker-product-id” w znacznikach odliczania dla analiz PRO.
 
 = 0.1.1 =
-* Add `ticker/end_timestamp` filter so PRO and custom code can override the resolved countdown end time.
+* Dodaj filtr „ticker/end_timestamp”, aby PRO i kod niestandardowy mogły zastąpić ustalony czas zakończenia odliczania.
 
 = 0.1.0 =
-* First release. Counts down to a product's WooCommerce sale end date or a store-wide campaign date, with configurable placement, three time formats, an optional heading, and a custom sale-ended message. Server-rendered, no jQuery, no layout shift.
-</content>
-</invoke>
+* Pierwsze wydanie. Odlicza do daty zakończenia sprzedaży produktu w WooCommerce lub daty kampanii obejmującej cały sklep, z konfigurowalnym rozmieszczeniem, trzema formatami czasu, opcjonalnym nagłówkiem i niestandardową wiadomością o zakończeniu sprzedaży. Renderowane na serwerze, bez jQuery, bez zmiany układu.
+</treść>
+</wywołaj>
